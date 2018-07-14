@@ -40,8 +40,8 @@ data
 - Go to this repository: `cd multiparametric-fixed-fov`
 - Export environment variable: ``` export PATH_SCT_PIPELINE=`pwd` ```
 - Go to the main `data` folder
-- Process data: `${PATH_SCT_PIPELINE}/1_process_data.sh`
-- Compute metrics: `${PATH_SCT_PIPELINE}/2_extract_metrics.sh`
+- Process data: `${PATH_SCT_PIPELINE}/process_data.sh`
+- Compute metrics: `${PATH_SCT_PIPELINE}/extract_metrics.sh`
 
 ## Contributors
 
