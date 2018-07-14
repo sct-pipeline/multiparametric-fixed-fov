@@ -16,9 +16,6 @@
 # Exit if user presses CTRL+C (Linux) or CMD+C (OSX)
 trap "echo Caught Keyboard Interrupt within script. Exiting now.; exit" INT
 
-# Load parameters
-source parameters.sh
-
 # # Fetch OS type (used to open QC folder)
 # if uname -a | grep -i  darwin > /dev/null 2>&1; then
 #   # OSX
@@ -28,31 +25,31 @@ source parameters.sh
 #   export OPEN_CMD="xdg-open"
 # fi
 
-# Build color coding
+# Build color coding (cosmetic stuff)
 Color_Off='\033[0m'       # Text Reset
 Green='\033[0;92m'       # Yellow
 On_Black='\033[40m'       # Black
 
-# build syntax for process execution
+# Build syntax for process execution
 CMD=`pwd`/$1
+PATH_DATA=$2
 
-# go to path data
-cd $PATH_DATA
+# Go to path data folder that encloses all subjects' folders
+cd ${PATH_DATA}
 
-# get list of folders in current directory
+# Get list of subject folders from current directory
 SUBJECTS=`ls -d */`
 
 # Loop across subjects
 for subject in ${SUBJECTS[@]}; do
   # Display stuff
-  printf "${Green}${On_Black}\n===============================\nPROCESSING SUBJECT: ${subject}\n===============================\n${Color_Off}"
-  # echo "==============================="
-  # echo "PROCESSING SUBJECT: ${subject}"
-  # echo "***"
-  # go to subject folder
+  printf "${Green}${On_Black}\n===============================\n\
+  PROCESSING SUBJECT: ${subject}\n===============================\n\
+  ${Color_Off}"
+  # Go to subject folder
   cd ${subject}
-  # run process
+  # Run process
   $CMD
-  # go back to parent folder
+  # Go back to parent folder
   cd ..
 done

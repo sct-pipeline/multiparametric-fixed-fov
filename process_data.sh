@@ -1,46 +1,15 @@
 #!/bin/bash
 #
-# Process data.
+# Process data
 #
-# Run script within the subject's folder.
-#
-# Dependencies:
-# - SCT v3.2.2 and higher.
-# - (fsleyes for visualization)
-#
-# Authors: Julien Cohen-Adad
-#
-#
-# # t2
-# # ===========================================================================================
-# cd t2
-# # Check if manual segmentation already exists
-# if [ -e "t2_seg_manual.nii.gz" ]; then
-#   file_seg="t2_seg_manual.nii.gz"
-# else
-#   echo "Segment spinal cord"
-#   sct_deepseg_sc -i t2.nii.gz -c t2
-#   file_seg="t2_seg.nii.gz"
-#   # Check segmentation results and do manual corrections if necessary
-#   echo "Check segmentation and do manual correction if necessary, then save segmentation as t2_seg_manual.nii.gz"
-#   fsleyes t2.nii.gz -cm greyscale t2_seg.nii.gz -cm red -a 70.0 &
-#   # pause process during checking
-#   read -p "Press any key to continue..."
-#   # check if segmentation was modified
-#   if [ -e "t2_seg_manual.nii.gz" ]; then
-#   	file_seg="t2_seg_manual.nii.gz"
-#   fi
-# fi
-# # Register to template
-
-
+# Author: Julien Cohen-Adad
 
 # dmri
 # ===========================================================================================
 cd dmri
 # Separate b=0 and DW images
 sct_dmri_separate_b0_and_dwi -i dmri.nii.gz -bvec bvecs.txt
-# Segment cord (1st pass)
+# Segment cord (1st pass just to get the centerline)
 sct_propseg -i dwi_mean.nii.gz -c dwi
 # Create mask to aid in motion correction and for faster processing
 sct_create_mask -i dwi_mean.nii.gz -p centerline,dwi_mean_seg.nii.gz -size 30mm
@@ -76,7 +45,6 @@ mv warp_template2anat.nii.gz warp_template2dmri.nii.gz
 sct_warp_template -d dwi_moco_mean.nii.gz -w warp_template2dmri.nii.gz
 # Compute DTI
 sct_dmri_compute_dti -i dmri_crop_moco.nii.gz -bvec bvecs.txt -bval bvals.txt
-#sct_dmri_compute_dti -i dmri_crop_moco.nii.gz -bvec bvecs.txt -bval bvals.txt -method restore
 # Go back to parent folder
 cd ..
 #

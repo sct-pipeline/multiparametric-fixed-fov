@@ -6,10 +6,12 @@ typically used for intermediate registration to the template (following
   vertebral labeling). Here, template registration can be done directly to the
 multiparametric data.
 
+This pipeline will loop across all subjects located under the DATA folder and results will be concatenated into single csv files (each row will correspond to a subject).
+
 The following metrics are output (per contrast):
-- dmri: FA, MD, etc. in whole WM and sub-tracts, averaged across slices
-- mt: MTR in WM in whole WM and sub-tracts, averaged across slices
-- mt: MTsat in whole WM and sub-tracts, averaged across slices
+- **dmri**: FA, MD, etc. in whole WM and sub-tracts, averaged across slices
+- **mt**: MTR in WM in whole WM and sub-tracts, averaged across slices
+- **mt**: MTsat in whole WM and sub-tracts, averaged across slices
 
 ## Dependencies
 
@@ -19,7 +21,7 @@ This pipeline relies on [FSLeyes](https://fsl.fmrib.ox.ac.uk/fsl/fslwiki/FSLeyes
 ## File structure
 
 ~~~
-data
+DATA
   |- 001
   |- 002
   |- 003
@@ -38,9 +40,7 @@ data
 - Organize your data as indicated above
 - Download (or `git clone`) this repository.
 - Go to this repository: `cd multiparametric-fixed-fov`
-- Export environment variable: ``` export PATH_SCT_PIPELINE=`pwd` ```
-- Go to the main `data` folder
-- Process data: `${PATH_SCT_PIPELINE}/process_data.sh`
+- Process data: `./run_process.sh 1_process_data.sh PATH_TO_DATA`
 - Compute metrics: `${PATH_SCT_PIPELINE}/extract_metrics.sh`
 
 ## Contributors
