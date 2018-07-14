@@ -25,7 +25,7 @@ else
   sct_propseg -i dwi_moco_mean.nii.gz -c dwi
   file_seg="dwi_moco_mean_seg.nii.gz"
   # Check segmentation results and do manual corrections if necessary, then save modified segmentation as dwi_moco_mean_seg_manual.nii.gz"
-  echo "Check segmentation and do manual correction if necessary, then save segmentation as dwi_moco_mean_seg_manual.nii.gz"
+  echo "Check segmentation. If manual correction if necessary, go to 'Tools > Edit mode', correct the segmentation and save as dwi_moco_mean_seg_manual.nii.gz"
   fsleyes dwi_moco_mean.nii.gz -cm greyscale dwi_moco_mean_seg.nii.gz -cm red -a 70.0 &
   # pause process during checking
   read -p "Press any key to continue..."

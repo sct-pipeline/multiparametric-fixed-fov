@@ -41,7 +41,7 @@ DATA
 - Download (or `git clone`) this repository.
 - Go to this repository: `cd multiparametric-fixed-fov`
 - Process data: `./run_process.sh 1_process_data.sh PATH_TO_DATA`
-- Compute metrics: `${PATH_SCT_PIPELINE}/extract_metrics.sh`
+- Compute metrics: `./run_process.sh 2_extract_metrics.sh PATH_TO_DATA`
 
 ## Contributors
 
