@@ -14,6 +14,7 @@ The following metrics are output (per contrast):
 ## Dependencies
 
 This pipeline was tested on [SCT v3.2.3](https://github.com/neuropoly/spinalcordtoolbox/releases/tag/v3.2.3).
+This pipeline relies on [FSLeyes](https://fsl.fmrib.ox.ac.uk/fsl/fslwiki/FSLeyes) for active QC.
 
 ## File structure
 
