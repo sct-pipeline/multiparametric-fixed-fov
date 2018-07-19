@@ -44,7 +44,7 @@ SUBJECTS=`ls -d */`
 for subject in ${SUBJECTS[@]}; do
   # Display stuff
   printf "${Green}${On_Black}\n===============================\n\
-  PROCESSING SUBJECT: ${subject}\n===============================\n\
+PROCESSING SUBJECT: ${subject}\n===============================\n\
   ${Color_Off}"
   # Go to subject folder
   cd ${subject}

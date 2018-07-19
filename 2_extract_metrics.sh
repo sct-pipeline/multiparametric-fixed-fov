@@ -9,20 +9,6 @@
 trap "echo Caught Keyboard Interrupt within script. Exiting now.; exit" INT
 
 
-# t2
-# ===========================================================================================
-cd t2
-# if manual segmentation exists, select it
-if [ -d "t2_seg_manual.nii.gz" ]; then
-  file_seg="t2_seg_manual.nii.gz"
-else
-  file_seg="t2_seg.nii.gz"
-fi
-# Compute average CSA between XX and XX
-sct_process_segmentation -i ${file_seg} -p csa -vert 2:9 -perlevel 1 -ofolder ${PATH_RESULTS}/csa
-cd ..
-
-
 # mt
 # ===========================================================================================
 cd mt
