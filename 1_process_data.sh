@@ -4,11 +4,12 @@
 #
 # Author: Julien Cohen-Adad
 
-# CHANGE WITH YOUR SETTINGS:
-# Value of the inter-vertebral disc in the middle of the FOV in the
-# Superior-Inferior direction.
+# EDIT THE VARIABLE BELOW WITH YOUR SETTINGS:
+# ==============================================================================
+# Value of the inter-vertebral disc in the middle of the FOV in the Superior-Inferior direction.
 # Convention for disc value is: C2/C3 -> 3, C3/C4 -> 4, etc.
 DISC_MIDFOV="4"
+# ==============================================================================
 
 # Build color coding (cosmetic stuff)
 Color_Off='\033[0m'       # Text Reset
@@ -16,7 +17,7 @@ Green='\033[0;92m'       # Yellow
 On_Black='\033[40m'       # Black
 
 # mt
-# ===========================================================================================
+# ==============================================================================
 cd mt
 # Check if manual segmentation already exists
 if [ -e "t1w_seg_manual.nii.gz" ]; then

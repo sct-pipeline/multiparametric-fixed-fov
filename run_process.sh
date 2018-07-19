@@ -25,6 +25,7 @@ trap "echo Caught Keyboard Interrupt within script. Exiting now.; exit" INT
 #   export OPEN_CMD="xdg-open"
 # fi
 
+
 # Build color coding (cosmetic stuff)
 Color_Off='\033[0m'       # Text Reset
 Green='\033[0;92m'       # Yellow

@@ -7,8 +7,8 @@ typically used for intermediate registration to the template (following
 multiparametric data.
 
 This pipeline will loop across all subjects located under the DATA folder and
-results will be concatenated into single csv files (each row will correspond to
-  a subject).
+results will be concatenated into single csv files where each row will correspond to
+  a subject. The files will be output in the `DATA` folder.
 
 The following metric is output:
 - **mt**: MTR in WM in whole WM and sub-tracts, averaged across slices
