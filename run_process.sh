@@ -10,7 +10,7 @@
 # Example:
 #   ./run_process.sh extract_metrics.sh /Users/julien/data/spine_generic/
 #
-# NB: add the flag "-x" after "!/bin/bash" for full verbose of commands.
+# Add the flag "-x" after "!/bin/bash" for full verbose of commands.
 # Julien Cohen-Adad 2018-07-20
 
 # Exit if user presses CTRL+C (Linux) or CMD+C (OSX)
@@ -38,7 +38,12 @@ cd ${PATH_DATA}
 
 # If the variable SUBJECTS does not exist (commented), get list of all subject
 # folders from current directory
-SUBJECTS=`ls -d */`
+if [ -z ${SUBJECTS} ]; then
+  echo "Processing all subjects present in: $PATH_DATA."
+  SUBJECTS=`ls -d */`
+else
+  echo "Processing subjects specified in parameters.sh."
+fi
 
 # Loop across subjects
 for subject in ${SUBJECTS[@]}; do
