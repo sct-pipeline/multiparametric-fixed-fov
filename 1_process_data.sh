@@ -42,13 +42,13 @@ sct_register_multimodal -i mt0.nii.gz -d t1w_crop.nii.gz -param step=1,type=im,a
 # Register mt1->t1w
 sct_register_multimodal -i mt1.nii.gz -d t1w_crop.nii.gz -param step=1,type=im,algo=rigid,slicewise=1,metric=CC -x spline
 # Two scenarii depending if the FOV is centered at a disc or mid-vertebral body
-if [ -z ${MIDFOV_DISC} ]; then
+if [ ! -z ${MIDFOV_DISC} ]; then
   # create disc label in the middle of the S-I direction at the center of the cord
   sct_label_utils -i t1w_crop.nii.gz -create-seg -1,$MIDFOV_DISC -o label_disc.nii.gz
   # Register template->t1w
   sct_register_to_template -i t1w_crop.nii.gz -s ${file_seg} -ldisc label_disc.nii.gz -ref subject -c t1 -param step=1,type=seg,algo=centermass:step=2,type=im,algo=bsplinesyn,slicewise=1,iter=3
-elif [ -z ${MIDFOV_VERT} ]; then
-  # create disc label in the middle of the S-I direction at the center of the cord
+elif [ ! -z ${MIDFOV_VERT} ]; then
+  # create vert label in the middle of the S-I direction at the center of the cord
   sct_label_utils -i t1w_crop.nii.gz -create-seg -1,$MIDFOV_VERT -o label_vert.nii.gz
   # Register template->t1w
   sct_register_to_template -i t1w_crop.nii.gz -s ${file_seg} -l label_vert.nii.gz -ref subject -c t1 -param step=1,type=seg,algo=centermass:step=2,type=im,algo=bsplinesyn,slicewise=1,iter=3
