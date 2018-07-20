@@ -48,15 +48,14 @@ DATA
   - Superior-Inferior (S-I) location of the center of FOV: Uncomment **only one**
   of the following variables, depending if the FOV is centered at a disc or at
   a mid-vertebral level, and replace `X` with the value corresponding to your
-  acquisition setup (see figure below):
+  acquisition setup. For example, if the MRI volume is centered at the
+  mid-T10 vertebral level, then uncomment `MIDFOV_VERT` and set the value to
+  `17` (see figure below):
     - `MIDFOV_DISC=X`
     - `MIDFOV_VERT=X`:
 
 ![](fig/midfov.png)
 
-- Edit the file `1_process_data.sh` and modify the variable `DISC_MIDFOV`
-according to your needs. For example, if the MRI volume is centered at the
-mid-T10 vertebral level, then uncomment `MIDFOV_VERT` and set the value to `17`.
 - Process data: `./run_process.sh 1_process_data.sh`
 - Compute metrics: `./run_process.sh 2_extract_metrics.sh`
 
