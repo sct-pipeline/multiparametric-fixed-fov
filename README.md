@@ -45,6 +45,7 @@ DATA
   - `PATH_DATA`: Absolute path to the DATA folder. E.g.: `/Users/bob/data`
   - `SUBJECTS`: List of subjects to analyze. If you want to analyze all subjects
   in the `PATH_DATA` folder, then comment this variable.
+  - `METRICS_VERT_LEVEL`: Vertebral levels to compute MRI metrics from. For example, if you want to extract metrics from levels 2, 3, 4 and 5, set this variable as `METRICS_VERT_LEVEL="2,3,4,5"`.
   - `PATH_RESULTS`: Path where results will be stored. Default is: `$PATH_DATA/results`
   - Superior-Inferior (S-I) location of the center of FOV: Uncomment **only one**
   of the following variables, depending if the FOV is centered at a disc or at
