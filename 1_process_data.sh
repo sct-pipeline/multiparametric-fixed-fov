@@ -4,17 +4,11 @@
 #
 # Author: Julien Cohen-Adad
 
-# EDIT THE VARIABLE BELOW WITH YOUR SETTINGS:
-# ==============================================================================
-# Value of the inter-vertebral disc in the middle of the FOV in the Superior-Inferior direction.
-# Convention for disc value is: C2/C3 -> 3, C3/C4 -> 4, etc.
-DISC_MIDFOV="4"
-# ==============================================================================
-
 # Build color coding (cosmetic stuff)
-Color_Off='\033[0m'       # Text Reset
-Green='\033[0;92m'       # Yellow
-On_Black='\033[40m'       # Black
+Color_Off='\033[0m'
+Green='\033[0;92m'
+Red='\033[0;91m'
+On_Black='\033[40m'
 
 # mt
 # ==============================================================================
@@ -47,10 +41,21 @@ sct_crop_image -i t1w.nii.gz -m mask_t1w.nii.gz -o t1w_crop.nii.gz
 sct_register_multimodal -i mt0.nii.gz -d t1w_crop.nii.gz -param step=1,type=im,algo=rigid,slicewise=1,metric=CC -x spline
 # Register mt1->t1w
 sct_register_multimodal -i mt1.nii.gz -d t1w_crop.nii.gz -param step=1,type=im,algo=rigid,slicewise=1,metric=CC -x spline
-# create disc label in the middle of the S-I direction at the center of the cord
-sct_label_utils -i t1w_crop.nii.gz -create-seg -1,$DISC_MIDFOV -o label_disc.nii.gz
-# Register template->t1w
-sct_register_to_template -i t1w_crop.nii.gz -s ${file_seg} -ldisc label_disc.nii.gz -ref subject -c t1 -param step=1,type=seg,algo=centermass:step=2,type=seg,algo=bsplinesyn,slicewise=1,iter=3
+# Two scenarii depending if the FOV is centered at a disc or mid-vertebral body
+if [ -z ${MIDFOV_DISC} ]; then
+  # create disc label in the middle of the S-I direction at the center of the cord
+  sct_label_utils -i t1w_crop.nii.gz -create-seg -1,$MIDFOV_DISC -o label_disc.nii.gz
+  # Register template->t1w
+  sct_register_to_template -i t1w_crop.nii.gz -s ${file_seg} -ldisc label_disc.nii.gz -ref subject -c t1 -param step=1,type=seg,algo=centermass:step=2,type=im,algo=bsplinesyn,slicewise=1,iter=3
+elif [ -z ${MIDFOV_VERT} ]; then
+  # create disc label in the middle of the S-I direction at the center of the cord
+  sct_label_utils -i t1w_crop.nii.gz -create-seg -1,$MIDFOV_VERT -o label_vert.nii.gz
+  # Register template->t1w
+  sct_register_to_template -i t1w_crop.nii.gz -s ${file_seg} -l label_vert.nii.gz -ref subject -c t1 -param step=1,type=seg,algo=centermass:step=2,type=im,algo=bsplinesyn,slicewise=1,iter=3
+else
+  printf "${Red}${On_Black}\nERROR: Neither MIDFOV_DISC nor MIDFOV_VERT field is active. Please see README.md. Exiting.\n\n${Color_Off}"
+  exit 1
+fi
 # Rename warping field for clarity
 mv warp_template2anat.nii.gz warp_template2mt.nii.gz
 # Warp template

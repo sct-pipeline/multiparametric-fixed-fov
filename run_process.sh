@@ -27,8 +27,17 @@ trap "echo Caught Keyboard Interrupt within script. Exiting now.; exit" INT
 
 # Build color coding (cosmetic stuff)
 Color_Off='\033[0m'       # Text Reset
-Green='\033[0;92m'       # Yellow
+Green='\033[0;92m'       # Green
+Red='\033[0;91m'  # Red
 On_Black='\033[40m'       # Black
+
+# Load config file
+if [ -e "parameters.sh" ]; then
+  source parameters.sh
+else
+  printf "\n${Red}${On_Black}ERROR: The file parameters.sh was not found. You need to create one for this pipeline to work. Please see README.md.${Color_Off}\n\n"
+  exit 1
+fi
 
 # Build syntax for process execution
 CMD=`pwd`/$1

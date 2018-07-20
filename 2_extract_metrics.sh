@@ -8,6 +8,13 @@
 # Exit if user presses CTRL+C (Linux) or CMD+C (OSX)
 trap "echo Caught Keyboard Interrupt within script. Exiting now.; exit" INT
 
+# Load config file
+source parameters.sh
+
+# Create results folder
+if [ ! -d ${PATH_RESULTS} ]; then
+  mkdir ${PATH_RESULTS}
+fi
 
 # mt
 # ==============================================================================
