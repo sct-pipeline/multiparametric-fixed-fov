@@ -1,5 +1,7 @@
 #!/bin/bash
-# set environment variables for your study.
+# Configuration file for your study.
+# Copy this file and rename it as `parameters.sh`, then modify the variables
+# according to your needs.
 
 # Path to input data (do not add "/" at the end). This path should be absolute
 # (i.e. should start with "/"). Example: PATH_DATA="/Users/bob/data"
