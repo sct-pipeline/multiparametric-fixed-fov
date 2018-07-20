@@ -58,8 +58,9 @@ DATA
 
 ![](fig/midfov.png)
 
-- Process data: `./run_process.sh 1_process_data.sh`
-- Compute metrics: `./run_process.sh 2_extract_metrics.sh`
+- Once the file `parameters.sh` is configure, you can run the pipeline as follows:
+  - Process data: `./run_process.sh 1_process_data.sh`
+  - Compute metrics: `./run_process.sh 2_extract_metrics.sh`
 
 ## Contributors
 
