@@ -11,7 +11,7 @@
 #   ./run_process.sh extract_metrics.sh /Users/julien/data/spine_generic/
 #
 # NB: add the flag "-x" after "!/bin/bash" for full verbose of commands.
-# Julien Cohen-Adad 2018-06-11
+# Julien Cohen-Adad 2018-07-20
 
 # Exit if user presses CTRL+C (Linux) or CMD+C (OSX)
 trap "echo Caught Keyboard Interrupt within script. Exiting now.; exit" INT
