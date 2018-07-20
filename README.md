@@ -40,8 +40,10 @@ DATA
 - Organize your data as indicated above
 - Download (or `git clone`) this repository.
 - Go to the repository folder: `cd multiparametric-fixed-fov`
-- Edit the file `parameters.sh` and modify the following variables:
-  - `PATH_DATA`: Absolute path to the DATA folder. E.g.: `/Users/bob/data/`
+- Edit the file `parameters.sh` and modify the variables according to your needs:
+  - `PATH_DATA`: Absolute path to the DATA folder. E.g.: `/Users/bob/data`
+  - `SUBJECTS`: List of subjects to analyze. If you want to analyze all subjects
+  in the `PATH_DATA` folder, then comment this variable.
   - Superior-Inferior (S-I) location of the center of FOV: Uncomment **only one**
   of the following variables, depending if the FOV is centered at a disc or at
   a mid-vertebral level, and replace `X` with the value corresponding to your
@@ -51,11 +53,13 @@ DATA
 
 ![](fig/midfov.png)
 
+  - `PATH_RESULTS`: Path where results will be stored. Default is: `$PATH_DATA/results`
+
 - Edit the file `1_process_data.sh` and modify the variable `DISC_MIDFOV`
 according to your needs. For example, if the MRI volume is centered at the
-mid-T10 vertebral level, then change the current value from `4` to `6`.
-- Process data: `./run_process.sh 1_process_data.sh PATH_TO_DATA`
-- Compute metrics: `./run_process.sh 2_extract_metrics.sh PATH_TO_DATA`
+mid-T10 vertebral level, then uncomment `MIDFOV_VERT` and set the value to `17`.
+- Process data: `./run_process.sh 1_process_data.sh`
+- Compute metrics: `./run_process.sh 2_extract_metrics.sh`
 
 ## Contributors
 
