@@ -1,12 +1,9 @@
 # multiparametric-fixed-fov
 Processing pipeline (multi-subjects) for processing multi-parametric data when
-FOV is systematically centered at a particular vertebral level. This prior
-knowledge prevents us from having to rely on an anatomical data, which is
-typically used for intermediate registration to the template (following
-  vertebral labeling). Here, template registration can be done directly to the
-multiparametric data.
+FOV is systematically centered at a particular disc or mid-vertebral level. This prior
+knowledge enables us to bypass the registration between the template and an anatomical data (typically T1 or T2), from which we can get the vertebral level information.
 
-This pipeline will loop across all subjects located under the DATA folder and
+This pipeline will loop across all subjects (or only the subjects that you have specified) located under the DATA folder and
 results will be concatenated into single csv files where each row will correspond to
   a subject. The files will be output in the `DATA` folder.
 
