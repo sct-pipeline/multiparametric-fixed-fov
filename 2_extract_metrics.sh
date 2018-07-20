@@ -8,9 +8,6 @@
 # Exit if user presses CTRL+C (Linux) or CMD+C (OSX)
 trap "echo Caught Keyboard Interrupt within script. Exiting now.; exit" INT
 
-# Load config file
-source parameters.sh
-
 # Create results folder
 if [ ! -d ${PATH_RESULTS} ]; then
   mkdir ${PATH_RESULTS}
@@ -19,14 +16,12 @@ fi
 # mt
 # ==============================================================================
 cd mt
-# compute MTR in WM
-sct_extract_metric -i mtr.nii.gz -l 51 -method map -o ../../mtr_in_WM.xls
-# compute MTR in dorsal columns
-sct_extract_metric -i mtr.nii.gz -l 53 -method map -o ../../mtr_in_DC.xls
-# compute FA in lateral funiculi
-sct_extract_metric -i mtr.nii.gz -l 54 -method map -o ../../mtr_in_LF.xls
-# compute MTR in WM at C3-C4 levels and average per level
-sct_extract_metric -i mtr.nii.gz -l 51 -method map -vert 3:4 -perlevel 1 -o ../../mtr_in_WM_C3-C4.xls
-# compute MTR in WM between slices 5 and 15 and averaged across slices
-sct_extract_metric -i mtr.nii.gz -l 51 -method map -z 5:15 -perslice 0 -o ../../mtr_in_WM_z5-15.xls
+# compute MTR in WM in each level prescribed by METRICS_VERT_LEVEL
+sct_extract_metric -i mtr.nii.gz -l 51 -method map -vert ${METRICS_VERT_LEVEL} -perlevel 1 -o ${PATH_RESULTS}/mtr_in_WM.xls
+## compute MTR in WM and average across level(s) prescribed by METRICS_VERT_LEVEL
+# sct_extract_metric -i mtr.nii.gz -l 51 -method map -vert ${METRICS_VERT_LEVEL} -perlevel 0 -o ${PATH_RESULTS}/mtr_in_WM.xls
+## compute MTR in the dorsal columns in each level prescribed by METRICS_VERT_LEVEL
+# sct_extract_metric -i mtr.nii.gz -l 53 -method map -vert ${METRICS_VERT_LEVEL} -perlevel 1 -o ${PATH_RESULTS}/mtr_in_DC.xls
+## compute MTR in WM between slices 5 and 15 and averaged across slices
+# sct_extract_metric -i mtr.nii.gz -l 51 -method map -z 5:15 -perslice 0 -o ${PATH_RESULTS}/mtr_in_WM_z5-15.xls
 cd ..

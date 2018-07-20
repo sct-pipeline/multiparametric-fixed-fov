@@ -14,10 +14,14 @@ export SUBJECTS=(
 	"002"
 	)
 
-# Path where to save results (do not add "/" at the end).
-export PATH_RESULTS="${PATH_DATA}/results"
-
-# vertebral or disc level where FOV is centered. Uncomment the appropriate
+# Vertebral or disc level where FOV is centered. Uncomment the appropriate
 # variable and assign value:
 # export MIDFOV_DISC=X
 # export MIDFOV_VERT=
+
+# Vertebral levels to compute MRI metrics from. Please replace the example
+# values below.
+export METRICS_VERT_LEVEL="3,4,5"
+
+# Path where to save results (do not add "/" at the end).
+export PATH_RESULTS="${PATH_DATA}/results"
