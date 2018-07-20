@@ -44,6 +44,7 @@ DATA
   - `PATH_DATA`: Absolute path to the DATA folder. E.g.: `/Users/bob/data`
   - `SUBJECTS`: List of subjects to analyze. If you want to analyze all subjects
   in the `PATH_DATA` folder, then comment this variable.
+  - `PATH_RESULTS`: Path where results will be stored. Default is: `$PATH_DATA/results`
   - Superior-Inferior (S-I) location of the center of FOV: Uncomment **only one**
   of the following variables, depending if the FOV is centered at a disc or at
   a mid-vertebral level, and replace `X` with the value corresponding to your
@@ -52,8 +53,6 @@ DATA
     - `MIDFOV_VERT=X`:
 
 ![](fig/midfov.png)
-
-  - `PATH_RESULTS`: Path where results will be stored. Default is: `$PATH_DATA/results`
 
 - Edit the file `1_process_data.sh` and modify the variable `DISC_MIDFOV`
 according to your needs. For example, if the MRI volume is centered at the
