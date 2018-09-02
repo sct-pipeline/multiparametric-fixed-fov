@@ -44,12 +44,12 @@ if [ ! -z ${MIDFOV_DISC} ]; then
   # create disc label in the middle of the S-I direction at the center of the cord
   sct_label_utils -i mt1_crop.nii.gz -create-seg -1,$MIDFOV_DISC -o label_disc.nii.gz
   # Register template->mt1
-  sct_register_to_template -i mt1_crop.nii.gz -s ${file_seg} -ldisc label_disc.nii.gz -ref subject -c t2 -param step=1,type=seg,algo=centermass:step=2,type=im,algo=syn,metric=CC,slicewise=0,smooth=0,iter=3 -qc ../../../qc
+  sct_register_to_template -i mt1_crop.nii.gz -s ${file_seg} -ldisc label_disc.nii.gz -ref subject -c t2 -param step=1,type=seg,algo=centermass:step=2,type=im,algo=syn,metric=CC,slicewise=0,smooth=0,iter=3 -qc ${PATH_QC}
 elif [ ! -z ${MIDFOV_VERT} ]; then
   # create vert label in the middle of the S-I direction at the center of the cord
   sct_label_utils -i mt1_crop.nii.gz -create-seg -1,$MIDFOV_VERT -o label_vert.nii.gz
-  # Register template->mt1
-  sct_register_to_template -i mt1_crop.nii.gz -s ${file_seg} -l label_vert.nii.gz -ref subject -c t2 -param step=1,type=seg,algo=centermass:step=2,type=im,algo=syn,metric=CC,slicewise=0,smooth=0,iter=3 -qc ../../../qc
+  # Register template->t1w
+  sct_register_to_template -i mt1_crop.nii.gz -s ${file_seg} -l label_vert.nii.gz -ref subject -c t2 -param step=1,type=seg,algo=centermass:step=2,type=im,algo=syn,metric=CC,slicewise=0,smooth=0,iter=3 -qc ${PATH_QC}
 else
   printf "${Red}${On_Black}\nERROR: Neither MIDFOV_DISC nor MIDFOV_VERT field is active. Please see README.md. Exiting.\n\n${Color_Off}"
   exit 1
