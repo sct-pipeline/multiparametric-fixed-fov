@@ -3,9 +3,9 @@ Processing pipeline (multi-subjects) for processing multi-parametric data when
 FOV is systematically centered at a particular disc or mid-vertebral level. This prior
 knowledge enables us to bypass the registration between the template and an anatomical data (typically T1 or T2), from which we can get the vertebral level information.
 
-This pipeline will loop across all subjects (or only the subjects that you have specified) located under the DATA folder and
+This pipeline will loop across all subjects (or only the subjects that you have specified) located under the `data` folder and
 results will be concatenated into single csv files where each row will correspond to
-  a subject. The files will be output in the `DATA` folder.
+  a subject. The files will be output in the `data` folder.
 
 The following metric is output:
 - **mt**: MTR in WM in whole WM and sub-tracts, averaged across slices
@@ -16,12 +16,12 @@ In future versions of this pipeline, the following example metrics will be added
 
 ## Dependencies
 
-This pipeline was tested on [SCT v3.2.3](https://github.com/neuropoly/spinalcordtoolbox/releases/tag/v3.2.3). This pipeline also relies on [FSLeyes](https://fsl.fmrib.ox.ac.uk/fsl/fslwiki/FSLeyes) for active quality control (QC).
+This pipeline was tested on [SCT v3.2.4](https://github.com/neuropoly/spinalcordtoolbox/releases/tag/v3.2.4). This pipeline also relies on [FSLeyes](https://fsl.fmrib.ox.ac.uk/fsl/fslwiki/FSLeyes) for active quality control (QC).
 
 ## File structure
 
 ~~~
-DATA
+data
   |- 001
   |- 002
   |- 003
@@ -55,8 +55,14 @@ DATA
 ![](fig/midfov.png)
 
 - Once the file `parameters.sh` is configured, you can run the pipeline as follows:
-  - Process data: `./run_process.sh 1_process_data.sh`
-  - Compute metrics: `./run_process.sh 2_extract_metrics.sh`
+  - Process data: Will do most of the processing. A QC folder will be generated to check template registration.
+~~~
+./run_process.sh 1_process_data.sh
+~~~
+  - Compute metrics: Extract metrics within specified labels and levels.
+~~~
+./run_process.sh 2_extract_metrics.sh
+~~~
 
 ## Contributors
 
